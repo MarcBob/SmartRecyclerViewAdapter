@@ -93,3 +93,6 @@ with removeItemRange and removeItem you can remove items from the list
 
 #Installation
 Just import the module SmartRecyclerViewAdapter into your project for now.
+
+#SampleApp
+Check out the code in the directory app. Here you see some basic examples of how to use the SmartRecyclerView.
