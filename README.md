@@ -1,7 +1,7 @@
-# SmartRecyclerViewAdapter
-If you are using the RecyclerView you might also get tired of writing adapters over and over again. The SmartRecyclerViewAdapter removes this pain. Just implement the ViewHolders and you don't have to deal with the adapter anymore.
+# bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter
+If you are using the RecyclerView you might also get tired of writing adapters over and over again. The bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter removes this pain. Just implement the ViewHolders and you don't have to deal with the adapter anymore.
 
-All you need to do is use the SmartRecyclerViewAdapter and define a costum ViewHolder for each of your different list items.
+All you need to do is use the bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter and define a costum ViewHolder for each of your different list items.
 
 How do you do this?
 
@@ -72,12 +72,12 @@ It looks weird but it's needed to internally give that item a different class ba
 ###getGenericItemViewType
 If two of your ViewHolders use the same layout, one of them has to overwrite getGenericItemViewType to return a different ItemViewType. Consider using an android id for this. But keep in mind, usually this is not needed.
 
-#SmartRecyclerViewAdapter
-Once you have created ViewHolders for all your item types, all there is left to do is to create the SmartRecyclerViewAdapter which takes an array of instances of all the ViewHolders it should use. (When instantiating the viewHolders here it is fine to pass null as the itemView)
+#bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter
+Once you have created ViewHolders for all your item types, all there is left to do is to create the bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter which takes an array of instances of all the ViewHolders it should use. (When instantiating the viewHolders here it is fine to pass null as the itemView)
 
 
             ViewHolder[] viewHolders = {viewHolder1, viewHolder2, ...};
-            new SmartRecyclerViewAdapter(viewHolders);
+            new bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter(viewHolders);
 
 ###addViewHolder and addViewHolders
 
@@ -92,7 +92,7 @@ With setItems you set the list of items to display. This list can be any List of
 with removeItemRange and removeItem you can remove items from the list
 
 #Installation
-Just import the module SmartRecyclerViewAdapter into your project for now.
+Just import the module bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter into your project for now.
 
 #SampleApp
 Check out the code in the directory app. Here you see some basic examples of how to use the SmartRecyclerView.

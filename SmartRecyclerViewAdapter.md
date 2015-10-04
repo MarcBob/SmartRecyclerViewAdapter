@@ -1,8 +1,8 @@
-## SmartRecyclerViewAdapter
+## bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter
 
-The SmartRecyclerViewAdapter makes it a lot easier to get the RecyclerView to display a list of different items. No need to create a adapter with view types and switch statements etc.
+The bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter makes it a lot easier to get the RecyclerView to display a list of different items. No need to create a adapter with view types and switch statements etc.
 
-All you need to do is use the SmartRecyclerViewAdapter and define a costum ViewHolder for each of your different list items.
+All you need to do is use the bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter and define a costum ViewHolder for each of your different list items.
 
 How do you do this?
 
@@ -51,11 +51,11 @@ Here you need to implement two more methods.
 
 It looks weird but it's needed to internally give that item a different class based on the type. Attention!!! This behaviour can not be inherited by multiple childclasses. If some other class extends this class it has to overwrite this method again an have this code in it!!!
 
-Once you have created ViewHolders for all your item types, all there is left to do is to create the SmartRecyclerViewAdapter which takes an array of instances of all the ViewHolders it should use. (When instantiating the viewHolders here it is fine to pass null as the itemView)
+Once you have created ViewHolders for all your item types, all there is left to do is to create the bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter which takes an array of instances of all the ViewHolders it should use. (When instantiating the viewHolders here it is fine to pass null as the itemView)
 
 '''
 ViewHolder[] viewHolders = {viewHolder1, viewHolder2, ...};
-new SmartRecyclerViewAdapter(viewHolders);
+new bobzien.com.smartrecyclerviewadapter.bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter(viewHolders);
 '''
 
 After that you can just use the different add methods on the adapter to add items to the list in different positions. They will be displayed without any casting on your side. You only have to make sure there is a ViewHolder defined for each class or type you want to display.
