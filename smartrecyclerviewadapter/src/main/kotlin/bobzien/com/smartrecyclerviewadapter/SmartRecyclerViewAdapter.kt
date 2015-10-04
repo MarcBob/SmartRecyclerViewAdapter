@@ -58,19 +58,19 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
     }
 
     fun addItems(position: Int, vararg newItems: Any) {
-        var position = position
+        var index = position
         val insertionPosition = position
         for (item in newItems) {
-            items.add(position++, wrapItem(item))
+            items.add(index++, wrapItem(item))
         }
         notifyItemRangeInserted(insertionPosition, newItems.size())
     }
 
     fun addItems(position: Int, newItems: List<Any>) {
-        var position = position
+        var index = position
         val insertionPosition = position
         for (item in newItems) {
-            items.add(position++, wrapItem(item))
+            items.add(index++, wrapItem(item))
         }
         wrapItems()
         notifyItemRangeInserted(insertionPosition, newItems.size())
@@ -113,7 +113,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
     private fun wrapItem(item: Any): Any {
         for (typeViewHolder in typeViewHolders) {
             if (typeViewHolder.internalCanHandle(item)) {
-                val wrappedObject = typeViewHolder.getWrappedObject(item) ?: throw WrapperNullException("The wrapper returned by " + typeViewHolder.javaClass.simpleName + " was null." + " Please implement the method getWrappedObject and let it return an inner class which implements Wrapper." + " The method getItem() should return the item that was passed into the getWrappedObject() method as a parameter.")
+                val wrappedObject = typeViewHolder.getWrappedObject(item)
                 return wrappedObject
             }
         }
@@ -136,15 +136,6 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
 
         (holder as ViewHolder<Any>).bindViewHolder(item, position == selectedPosition)
     }
-
-//    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        var item = items.get(position)
-//        if (holder is TypeViewHolder<*>) {
-//            item = (item as Wrapper).item
-//        }
-//
-//        (holder as ViewHolder<Any>).bindViewHolder(item, position == selectedPosition)
-//    }
 
     override fun getItemCount(): Int {
         return items.size()
@@ -276,6 +267,4 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
     class DuplicateItemViewTypeException(detailMessage: String) : RuntimeException(detailMessage)
 
     class MissingViewHolderException(detailMessage: String) : RuntimeException(detailMessage)
-
-    class WrapperNullException(detailMessage: String) : RuntimeException(detailMessage)
 }
