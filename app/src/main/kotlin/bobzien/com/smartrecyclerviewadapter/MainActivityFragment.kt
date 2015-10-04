@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.fragment_main.*;
  * A placeholder fragment containing a simple view.
  */
 class MainActivityFragment : Fragment() {
-//    protected lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -44,8 +43,8 @@ class MainActivityFragment : Fragment() {
 
         val adapter = SmartRecyclerViewAdapter(viewHolders)
 
-        recycler_view.adapter = adapter
-        recycler_view.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
 
         /** Let's set the initial list for the adapter  */
@@ -68,7 +67,7 @@ class MainActivityFragment : Fragment() {
 
     private fun getViewHolderArray(context: Context): Array<ViewHolder<Any>> {
         /** Here we generate an array of ViewHolders which define what kind of items should be displayed  */
-        return arrayOf(NumViewHolder(context, Integer::class.java , null) as ViewHolder<Any>,
+        return arrayOf(NumViewHolder(context, Int::class.java , null) as ViewHolder<Any>,
                 TypedViewHolder1(context, TypedObject::class.java, null) as ViewHolder<Any>,
                 TypedViewHolder2(context, TypedObject::class.java, null) as ViewHolder<Any>)
     }
