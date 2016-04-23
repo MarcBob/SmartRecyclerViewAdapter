@@ -6,11 +6,9 @@ import android.support.v7.widget.RecyclerView.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import java.util.*
 
-import java.util.ArrayList
-import java.util.HashMap
-
-class SmartRecyclerViewAdapter @Throws(SmartRecyclerViewAdapter.DuplicateItemViewTypeException::class)
+open class SmartRecyclerViewAdapter @Throws(SmartRecyclerViewAdapter.DuplicateItemViewTypeException::class)
 constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adapter<SmartRecyclerViewAdapter.ViewHolder<Any>>() {
     private val viewHolders = HashMap<Class<Any>, ViewHolder<Any>>()
     private val itemViewTypeToViewHolders = HashMap<Int, ViewHolder<Any>>()
@@ -63,7 +61,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
         for (item in newItems) {
             items.add(index++, wrapItem(item))
         }
-        notifyItemRangeInserted(insertionPosition, newItems.size())
+        notifyItemRangeInserted(insertionPosition, newItems.size)
     }
 
     fun addItems(position: Int, newItems: List<Any>) {
@@ -73,17 +71,23 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
             items.add(index++, wrapItem(item))
         }
         wrapItems()
-        notifyItemRangeInserted(insertionPosition, newItems.size())
+        notifyItemRangeInserted(insertionPosition, newItems.size)
     }
 
-    fun removeItem(position: Int) {
-        items.remove(position)
+    fun removeItemAt(position: Int) {
+        items.removeAt(position)
         notifyItemRemoved(position)
+    }
+
+    fun removeItem(item: Any) {
+        val index = items.indexOf(item)
+        items.removeAt(index)
+        notifyItemRemoved(index)
     }
 
     fun removeItemRange(startPosition: Int, itemCount: Int) {
         for (i in 0..itemCount - 1) {
-            items.remove(startPosition)
+            items.removeAt(startPosition)
         }
         notifyItemRangeRemoved(startPosition, itemCount)
     }
@@ -100,8 +104,12 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
         return item
     }
 
+    fun indexOf(item: Any?): Int{
+        return items.indexOf(item)
+    }
+
     private fun wrapItems() {
-        if (typeViewHolders.size() > 0) {
+        if (typeViewHolders.size > 0) {
             var i = 0
             for (item in items) {
                 items.set(i, wrapItem(item))
@@ -138,7 +146,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
     }
 
     override fun getItemCount(): Int {
-        return items.size()
+        return items.size
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -184,7 +192,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
      * ViewHolder that contains the actual itemView using the getInstance(View parent) method.
      * @param context
      * *
-     * @param clazz
+     * @param handledClass
      */
     (val context: Context, handledClass: Class<*>, itemView: View?) : RecyclerView.ViewHolder(itemView ?: View(context)) {
 
@@ -222,7 +230,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
          * Override this if itemViewTypes are colliding. Consider using an android Id.
          * @return itemViewType
          */
-        val genericItemViewType: Int
+        open val genericItemViewType: Int
             get() = layoutResourceId
 
         /**
