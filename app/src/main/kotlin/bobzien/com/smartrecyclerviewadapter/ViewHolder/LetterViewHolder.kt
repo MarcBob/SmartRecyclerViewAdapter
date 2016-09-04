@@ -4,9 +4,8 @@ import android.content.Context
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.TextView
-
 import bobzien.com.smartrecyclerviewadapter.R
-import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
+import com.marmor.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
 
 class LetterViewHolder(context: Context, clazz: Class<*>, itemView: View?) : ViewHolder<String>(context, clazz, itemView) {
     protected lateinit var textView: TextView

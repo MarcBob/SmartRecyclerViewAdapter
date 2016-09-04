@@ -3,14 +3,9 @@ package bobzien.com.smartrecyclerviewadapter.ViewHolder
 import android.content.Context
 import android.view.View
 import android.widget.TextView
-
 import bobzien.com.smartrecyclerviewadapter.R
-import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.TypeViewHolder
-import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
-import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.Wrapper
 import bobzien.com.smartrecyclerviewadapter.TypedObject
-import butterknife.ButterKnife
-import butterknife.InjectView
+import com.marmor.smartrecyclerviewadapter.SmartRecyclerViewAdapter.*
 
 class TypedViewHolder1(context: Context, clazz: Class<TypedObject>, itemView: View?) : TypeViewHolder<TypedObject>(context, clazz as Class<Any>, itemView) {
 

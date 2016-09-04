@@ -1,4 +1,4 @@
-package bobzien.com.smartrecyclerviewadapter
+package com.marmor.smartrecyclerviewadapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,10 +6,12 @@ import android.support.v7.widget.RecyclerView.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.marmor.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
 import java.util.*
 
-open class SmartRecyclerViewAdapter @Throws(SmartRecyclerViewAdapter.DuplicateItemViewTypeException::class)
-constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adapter<SmartRecyclerViewAdapter.ViewHolder<Any>>() {
+open class SmartRecyclerViewAdapter @Throws(DuplicateItemViewTypeException::class)
+constructor(viewHolders: Array<ViewHolder<Any>>) : Adapter<ViewHolder<Any>>() {
+
     private val viewHolders = HashMap<Class<Any>, ViewHolder<Any>>()
     private val itemViewTypeToViewHolders = HashMap<Int, ViewHolder<Any>>()
     private var items: MutableList<Any> = ArrayList()
@@ -29,6 +31,9 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
         }
     }
 
+    constructor(viewHolder: ViewHolder<Any>) : this(arrayOf(viewHolder)) {
+    }
+
     fun addViewHolders(vararg viewHolders: ViewHolder<Any>) {
         for (viewHolder in viewHolders) {
             addViewHolder(viewHolder)
@@ -37,7 +42,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
 
     fun addViewHolder(viewHolder: ViewHolder<Any>) {
         if (itemViewTypeToViewHolders.containsKey(viewHolder.genericItemViewType)) {
-            throw (DuplicateItemViewTypeException((itemViewTypeToViewHolders.get(viewHolder.genericItemViewType) as Any).javaClass.simpleName
+            throw (DuplicateItemViewTypeException((itemViewTypeToViewHolders[viewHolder.genericItemViewType] as Any).javaClass.simpleName
                     + " has same ItemViewType as " + viewHolder.javaClass.simpleName
                     + ". Overwrite getGenericItemViewType() in one of the two classes and assign a new type. Consider using an android id."))
         }
@@ -97,14 +102,14 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
             return null
         }
 
-        val item = items.get(position)
+        val item = items[position]
         if (item is Wrapper) {
             return item.item
         }
         return item
     }
 
-    fun indexOf(item: Any?): Int{
+    fun indexOf(item: Any?): Int {
         return items.indexOf(item)
     }
 
@@ -112,7 +117,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
         if (typeViewHolders.size > 0) {
             var i = 0
             for (item in items) {
-                items.set(i, wrapItem(item))
+                items[i] = wrapItem(item)
                 i++
             }
         }
@@ -129,7 +134,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<Any> {
-        val viewHolder = itemViewTypeToViewHolders.get(viewType)
+        val viewHolder = itemViewTypeToViewHolders[viewType]
 
         val instance = viewHolder!!.getInstance(parent)
         instance.adapter = this
@@ -137,7 +142,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
     }
 
     override fun onBindViewHolder(holder: ViewHolder<Any>?, position: Int) {
-        var item = items.get(position)
+        var item = items[position]
         if (holder is TypeViewHolder<*>) {
             item = (item as Wrapper).item
         }
@@ -156,11 +161,11 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
     }
 
     private fun getViewHolder(position: Int): ViewHolder<Any> {
-        val item = items.get(position)
+        val item = items[position]
 
         val itemClass = item.javaClass
 
-        var viewHolder: ViewHolder<Any>? = viewHolders.get(itemClass)
+        var viewHolder: ViewHolder<Any>? = viewHolders[itemClass]
 
         if (viewHolder == null) {
             viewHolder = tryToFindSuperClass(itemClass)
@@ -176,7 +181,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
         var viewHolder: ViewHolder<Any>?
         var superclass: Class<*>? = itemClass.superclass
         while (superclass != null) {
-            viewHolder = viewHolders.get(superclass)
+            viewHolder = viewHolders[superclass]
             if (viewHolder != null) {
                 viewHolders.put(superclass as Class<Any>, viewHolder)
                 return viewHolder
@@ -194,12 +199,12 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
      * *
      * @param handledClass
      */
-    (val context: Context, handledClass: Class<*>, itemView: View?) : RecyclerView.ViewHolder(itemView ?: View(context)) {
+    (val context: Context, handledClass: Class<*>, itemView: View? = null) : RecyclerView.ViewHolder(itemView ?: View(context)) {
 
         var adapter: SmartRecyclerViewAdapter? = null
 
         private var _handledClass: Class<*>
-        open fun getHandledClass(): Class<*>{
+        open fun getHandledClass(): Class<*> {
             return _handledClass
         }
 
@@ -244,11 +249,11 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
         abstract fun bindViewHolder(item: T, selected: Boolean)
     }
 
-    abstract class TypeViewHolder<T>(context: Context, clazz: Class<Any>, itemView: View?) : ViewHolder<T>(context, clazz, itemView) {
+    abstract class TypeViewHolder<T>(context: Context, clazz: Class<Any>, itemView: View? = null) : ViewHolder<T>(context, clazz, itemView) {
 
         private lateinit var _handledClass: Class<*>
 
-        init{
+        init {
             _handledClass = getWrappedObject(null).javaClass
         }
 
@@ -263,7 +268,7 @@ constructor(viewHolders: Array<SmartRecyclerViewAdapter.ViewHolder<Any>>) : Adap
 
         abstract fun getWrappedObject(item: T?): Wrapper
 
-        override fun getHandledClass(): Class<*>{
+        override fun getHandledClass(): Class<*> {
             return _handledClass
         }
     }

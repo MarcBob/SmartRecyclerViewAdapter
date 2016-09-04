@@ -7,17 +7,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import java.util.ArrayList
-
-import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
 import bobzien.com.smartrecyclerviewadapter.ViewHolder.LetterViewHolder
 import bobzien.com.smartrecyclerviewadapter.ViewHolder.NumViewHolder
 import bobzien.com.smartrecyclerviewadapter.ViewHolder.TypedViewHolder1
 import bobzien.com.smartrecyclerviewadapter.ViewHolder.TypedViewHolder2
 import butterknife.ButterKnife
-
-import kotlinx.android.synthetic.fragment_main.*;
+import com.marmor.smartrecyclerviewadapter.SmartRecyclerViewAdapter
+import com.marmor.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
+import kotlinx.android.synthetic.main.fragment_main.*
+import java.util.*
 
 /**
  * A placeholder fragment containing a simple view.
@@ -67,7 +65,7 @@ class MainActivityFragment : Fragment() {
 
     private fun getViewHolderArray(context: Context): Array<ViewHolder<Any>> {
         /** Here we generate an array of ViewHolders which define what kind of items should be displayed  */
-        return arrayOf(NumViewHolder(context, Int::class.java , null) as ViewHolder<Any>,
+        return arrayOf(NumViewHolder(context, Integer::class.java , null) as ViewHolder<Any>,
                 TypedViewHolder1(context, TypedObject::class.java, null) as ViewHolder<Any>,
                 TypedViewHolder2(context, TypedObject::class.java, null) as ViewHolder<Any>)
     }
@@ -76,7 +74,7 @@ class MainActivityFragment : Fragment() {
             /** Here we get a list of integers which we want to add to our adapter. Those should be displayed by the NumViewHolder  */
     val integers: List<Int>
         get() {
-            val integers = ArrayList<Int>()
+            val integers = arrayListOf<Int>()
             for (i in 0..19) {
                 integers.add(i)
             }
