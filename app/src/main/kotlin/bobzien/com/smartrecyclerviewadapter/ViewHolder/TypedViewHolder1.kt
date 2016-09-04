@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 import bobzien.com.smartrecyclerviewadapter.R
 import bobzien.com.smartrecyclerviewadapter.TypedObject
-import com.marmor.smartrecyclerviewadapter.SmartRecyclerViewAdapter.*
+import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.*
 
 class TypedViewHolder1(context: Context, clazz: Class<TypedObject>, itemView: View?) : TypeViewHolder<TypedObject>(context, clazz as Class<Any>, itemView) {
 

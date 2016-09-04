@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.TextView
 import bobzien.com.smartrecyclerviewadapter.R
-import com.marmor.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
+import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
 
 class NumViewHolder(context: Context, clazz: Class<Integer>, itemView: View?) : ViewHolder<Integer>(context, clazz, itemView) {
     protected lateinit var textView: TextView

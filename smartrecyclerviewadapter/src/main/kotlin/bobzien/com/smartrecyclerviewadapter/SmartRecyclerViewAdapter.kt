@@ -1,4 +1,4 @@
-package com.marmor.smartrecyclerviewadapter
+package bobzien.com.smartrecyclerviewadapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.marmor.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
+import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
 import java.util.*
 
 open class SmartRecyclerViewAdapter @Throws(DuplicateItemViewTypeException::class)
