@@ -1,7 +1,7 @@
 # SmartRecyclerViewAdapter
 If you are using the RecyclerView you might also get tired of writing adapters over and over again. The SmartRecyclerViewAdapter removes this pain. Just implement the ViewHolders and you don't have to deal with the adapter anymore.
 
-All you need to do is use the SmartRecyclerViewAdapter and define a costum ViewHolder for each of your different list items.
+All you need to do is use SmartRecyclerViewAdapter and define a costum ViewHolder for each of your different list items.
 
 How do you do this?
 
