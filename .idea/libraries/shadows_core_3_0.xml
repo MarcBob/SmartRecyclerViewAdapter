@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.robolectric/shadows-core/3.0/3d33ccfbdb2d72115aed935a66c6210f9bf67148/shadows-core-3.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.robolectric/shadows-core/3.0/62370f31b6bc068eb24823502e72406587a590ec/shadows-core-3.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

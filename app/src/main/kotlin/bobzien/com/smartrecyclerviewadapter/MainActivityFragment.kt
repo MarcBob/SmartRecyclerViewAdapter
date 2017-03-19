@@ -12,7 +12,6 @@ import bobzien.com.smartrecyclerviewadapter.ViewHolder.NumViewHolder
 import bobzien.com.smartrecyclerviewadapter.ViewHolder.TypedViewHolder1
 import bobzien.com.smartrecyclerviewadapter.ViewHolder.TypedViewHolder2
 import butterknife.ButterKnife
-import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter
 import bobzien.com.smartrecyclerviewadapter.SmartRecyclerViewAdapter.ViewHolder
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*

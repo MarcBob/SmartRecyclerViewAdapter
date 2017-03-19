@@ -1,13 +1,13 @@
 # SmartRecyclerViewAdapter
 If you are using the RecyclerView you might also get tired of writing adapters over and over again. The SmartRecyclerViewAdapter removes this pain. Just implement the ViewHolders and you don't have to deal with the adapter anymore.
 
-All you need to do is use SmartRecyclerViewAdapter and define a costum ViewHolder for each of your different list items.
+All you need to do is to use the SmartRecyclerViewAdapter and define a custom ViewHolder for each kind of list items. This ViewHolder can be reused wherever you want to display this kind of item in a RecyclerView.
 
 How do you do this?
 
 #ViewHolder
 
-First you create the ViewHolder for your different items. There are two different possibilties. If the items have different classes then your ViewHolder has to extend the normal SmartRecyclerView.ViewHolder
+First you create the ViewHolder for your different items. There are two different possibilities. If you have a list of items, which you want to display and the view you want to use to display the different items depends on the class of the items, your ViewHolder has to extend the normal SmartRecyclerView.ViewHolder
 
 The ViewHolder has two purposes
     
@@ -24,17 +24,17 @@ The ViewHolder has two purposes
 This means you have to implement a couple of methods.
 
 ###The constructor:
-The constructor needs to call the super constructor. If you don't have an ItemView which you don't if you create the ViewHolder outside of the adapter you can just pass in null. But you need to be able to pass in an ItemView.
+The constructor needs to call the super constructor. If you don't have an ItemView, which you don't if you create the ViewHolder outside of the adapter, you can just pass in null. But you need to be able to pass in an ItemView in order for the adapter to work with the ViewHolder later on.
 
 ###bindViewHolder
             void bindViewHolder(@NonNull String item, boolean selected)
 
-This method is used to bind the data to the view. The seleced flag indicates if this item is selected so you can change the state of the view accordingly.
+This method is used to bind the data to the view. The selected flag indicates if this item is selected so you can change the state of the view accordingly.
 
 ###getLayoutResourceId
              int getLayoutResourceId()
 
-Here just return the layout recource that is used to display this item.
+Here just return the layout resource that is used to display this item.
 
 ###getInstance
              ViewHolder getInstance(@NonNull View itemView)
@@ -67,10 +67,10 @@ This method is very easy to use. Just let it return this:
             };
 
 
-It looks weird but it's needed to internally give that item a different class based on the type. Attention!!! This behaviour can not be inherited by multiple childclasses. If some other class extends this class it has to overwrite this method again an have this code in it!!!
+It looks weird but it's needed to internally give that item a different class based on the type. Attention!!! This behaviour can not be inherited by multiple child classes. If some other class extends this class it has to overwrite this method again and it has to have this code inside it!!!
 
 ###getGenericItemViewType
-If two of your ViewHolders use the same layout, one of them has to overwrite getGenericItemViewType to return a different ItemViewType. Consider using an android id for this. But keep in mind, usually this is not needed.
+This is usually not needed. If two of your ViewHolders use the same layout, one of them has to overwrite getGenericItemViewType to return a different ItemViewType. Consider using an android id for this. But keep in mind, usually this is not needed.
 
 #SmartRecyclerViewAdapter
 Once you have created ViewHolders for all your item types, all there is left to do is to create the SmartRecyclerViewAdapter which takes an array of instances of all the ViewHolders it should use. (When instantiating the viewHolders here it is fine to pass null as the itemView)

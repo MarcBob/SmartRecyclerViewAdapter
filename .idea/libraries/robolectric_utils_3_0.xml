@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.robolectric/robolectric-utils/3.0/38d31ddbc7db513477a5f1e63ba5f0f4e71c8bc8/robolectric-utils-3.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.robolectric/robolectric-utils/3.0/40566ef920951de8f658af162bb042ab62ab29d3/robolectric-utils-3.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
